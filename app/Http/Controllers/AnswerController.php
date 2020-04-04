@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Model\Answer;
 use App\Model\Question;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules\RequiredIf;
 
 class AnswerController extends Controller
 {
@@ -42,9 +43,11 @@ class AnswerController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function edit(Answer $answer)
+    public function edit(Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update', $answer);
+        
+        return view('answers.edit', compact('question', 'answer'));
     }
 
     /**
@@ -54,9 +57,15 @@ class AnswerController extends Controller
      * @param  \App\Model\Answer  $answer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Answer $answer)
+    public function update(Request $request, Question $question, Answer $answer)
     {
-        //
+        $this->authorize('update', $answer);
+
+        $answer->update($request->validate([
+            'body' => 'required'
+        ]));
+
+        return redirect()->route('questions.show', $question->slug)->with('success', ' Your answer has been udpated');
     }
 
     /**
