@@ -27,4 +27,13 @@ class Answer extends Model
 
         return $parseDown->text($this->body);
     }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($answer) {
+            $answer->question->increment('answers_count');
+        });
+    }
 }
