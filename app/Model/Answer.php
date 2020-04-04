@@ -9,7 +9,8 @@ use Parsedown;
 class Answer extends Model
 {
     protected $fillable = [
-        'body'
+        'body',
+        'user_id',
     ];
 
     public function question() 
