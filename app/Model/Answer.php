@@ -4,6 +4,7 @@ namespace App\Model;
 
 use App\User;
 use Illuminate\Database\Eloquent\Model;
+use Parsedown;
 
 class Answer extends Model
 {
@@ -21,6 +22,11 @@ class Answer extends Model
         return $this->belongsTo(User::class);
     }
 
+    public function getCreatedDateAttribute() 
+    {
+        return $this->created_at->diffForHumans();
+    }
+    
     public function getBodyHtmlAttribute() 
     {
         $parseDown = new Parsedown();
