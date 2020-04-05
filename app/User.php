@@ -40,7 +40,7 @@ class User extends Authenticatable
 
     public function questions()
     {
-        return $this->hasMany(Question::class);
+        return $this->hasMany(Question::class)->withTimestamps();
     }
 
     public function getUrlAttribute() 
@@ -55,5 +55,10 @@ class User extends Authenticatable
         $size = 32;
 
         return $grav_url = "https://www.gravatar.com/avatar/" . md5( strtolower( trim( $email ) ) ) . "?s=" . $size;
+    }
+
+    public function favorites()
+    {
+        return $this->belongsToMany(Question::class, 'favorites');
     }
 }
