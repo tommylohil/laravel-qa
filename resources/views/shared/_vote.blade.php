@@ -22,7 +22,7 @@
     >
         <i class="fas fa-caret-up fa-3x"></i>
     </a>
-    <form id="up-vote-{{ $formId }}" action="/{{ $formAction }}" method="POST" style="display:none;">
+    <form id="up-vote-{{ $formId }}" action="{{ $formAction }}" method="POST" style="display:none;">
         @csrf
         <input type="hidden" name="vote" value="1">
     </form>
@@ -33,7 +33,7 @@
     >
         <i class="fas fa-caret-down fa-3x"></i>
     </a>
-    <form id="down-vote-{{ $formId }}" action="/{{ $formAction }}" method="POST" style="display:none;">
+    <form id="down-vote-{{ $formId }}" action="{{ $formAction }}" method="POST" style="display:none;">
         @csrf
         <input type="hidden" name="vote" value="-1">
     </form>

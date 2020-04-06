@@ -50,7 +50,7 @@ class Answer extends Model
     {
         $parseDown = new Parsedown();
 
-        return $parseDown->text($this->body);
+        return clean($parseDown->text($this->body));
     }
 
     public static function boot()
