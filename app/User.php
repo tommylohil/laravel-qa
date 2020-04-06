@@ -41,7 +41,7 @@ class User extends Authenticatable
 
     public function questions()
     {
-        return $this->hasMany(Question::class)->withTimestamps();
+        return $this->hasMany(Question::class);
     }
 
     public function getUrlAttribute() 
@@ -60,7 +60,7 @@ class User extends Authenticatable
 
     public function favorites()
     {
-        return $this->belongsToMany(Question::class, 'favorites');
+        return $this->belongsToMany(Question::class, 'favorites')->withTimestamps();
     }
 
     public function voteQuestions()

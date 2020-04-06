@@ -1,5 +1,8 @@
 <?php
 
+use App\Model\Answer;
+use App\Model\Question;
+use App\User;
 use Illuminate\Database\Seeder;
 
 class UsersQuestionsAnswersTableSeeder extends Seeder
@@ -16,7 +19,7 @@ class UsersQuestionsAnswersTableSeeder extends Seeder
         \DB::table('users')->delete();
 
         factory(User::class, 3)->create()->each(function($user) {
-            $user->questions()
+            $user->questions()  
                 ->saveMany(
                     factory(Question::class, rand(1, 5))->make()
                 )

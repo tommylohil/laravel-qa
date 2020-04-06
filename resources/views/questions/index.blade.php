@@ -58,7 +58,11 @@
                             </div>
                         </div>
                         <hr />
-                    @endforeach
+                    @empty
+                        <div class="alert alert-warning">
+                            <strong>Sorry</strong> There are no questions available
+                        </div>
+                    @endforelse
 
                     <div class="text-center">
                         {{ $questions->links() }}
