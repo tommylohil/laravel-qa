@@ -4,12 +4,15 @@ namespace App\Model;
 
 use App\User;
 use App\Model\Answer;
+use App\VotableTrait;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 use Parsedown;
 
 class Question extends Model
 {
+    use VotableTrait;
+    
     protected $fillable = [
         'title', 'body'
     ];
@@ -83,20 +86,4 @@ class Question extends Model
     {
         return $this->favorites->count();
     }
-
-    public function votes()
-    {
-        return $this->morphToMany(User::class, 'votable');
-    }
-
-    public function upVotes()
-    {
-        return $this->votes()->wherePivot('vote', 1);
-    }
-    
-    public function downVotes()
-    {
-        return $this->votes()->wherePivot('vote', -1);
-    }
-    
 }
