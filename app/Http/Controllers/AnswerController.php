@@ -9,14 +9,14 @@ use Illuminate\Validation\Rules\RequiredIf;
 
 class AnswerController extends Controller
 {
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function __construct()
     {
-        //
+        $this->middleware('auth')->except('index');
+    }
+
+    public function index(Question $question)
+    {
+        return $question->answers()->with('user')->simplePaginate(3);
     }
 
     /**
