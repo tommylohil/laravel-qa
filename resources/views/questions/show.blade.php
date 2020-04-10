@@ -26,7 +26,7 @@
                                 <div class="col-4"></div>
                                 <div class="col-4"></div>
                                 <div class="col-4">
-                                    <user-info :model="{{ $question }}" label="ditanya oleh "></user-info>
+                                    <user-info :model="{{ $question }}" label="Asked "></user-info>
                                 </div>
                             </div>
                         </div>
