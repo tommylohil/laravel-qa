@@ -31,6 +31,9 @@
 </template>
 
 <script>
+import Vote from './Vote.vue';
+import UserInfo from './UserInfo.vue';
+
 export default {
     props: ['answer'],
 
@@ -119,6 +122,11 @@ export default {
         endpoint () {
             return `${this.questionId}/answers/${this.id}`;
         }
+    },
+
+    components: {
+        Vote,
+        UserInfo
     }
 }
 </script>

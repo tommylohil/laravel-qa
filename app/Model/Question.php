@@ -21,6 +21,7 @@ class Question extends Model
         'created_date',
         'is_favorited',
         'favorites_count',
+        'body_html',
     ];
 
     public function user() 
