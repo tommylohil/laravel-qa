@@ -12,7 +12,7 @@
                 <button class="btn btn-outline-secondary" type="button" @click.prevent="cancel">Cancel</button>
             </form>
             <div v-show="!editing">
-                <div v-html="bodyHtml" ref="bodyHtml" class="tet"></div>
+                <div :id="uniqueName" v-html="bodyHtml" ref="bodyHtml"></div>
                 <div class="row">
                     <div class="col-4">
                         <div class="ml-auto">
@@ -82,7 +82,7 @@ export default {
     },
 
     mounted () {
-        this.highlight();
+        this.highlight(`answer-${answer.id}`);
     },
 
     computed: {
