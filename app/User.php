@@ -49,6 +49,52 @@ class User extends Authenticatable
         return $this->hasMany(Question::class);
     }
 
+    public function answers()
+    {
+        return $this->hasMany(Answer::class);
+    }
+
+    public function posts()
+    {
+        $posts = $this->answers()->with('question')->get();
+        $posts2 = $this->questions()->get();
+
+        $data = collect();
+
+        if (request()->get('type') === 'questions') {
+            $sumPost = $posts;
+        }
+        else if (request()->get('type') === 'answers') {
+            $sumPost = $posts2;
+        }
+        else {
+            $sumPost = $posts->merge($posts2);
+        }
+
+        foreach ($sumPost as $post)
+        {
+            $item = [
+                'votes_count' => $post->votes_count,
+                'created_at' => $post->created_at->format('M d Y')
+            ];
+
+            if ($post instanceof Answer) {
+                $item['type'] = 'A';
+                $item['title'] = $post->question->title;
+                $item['accepted'] = $post->question->best_answer_id === $post->id ? true : false;
+            }
+        else if ($post instanceof Question) {
+                $item['type'] = 'Q';
+                $item['title'] = $post->title;
+                $item['accepted'] = (bool) $post->best_answer_id;
+            }
+
+            $data->push($item);
+        }
+
+        return $data->sortByDesc('votes_count')->values()->all();
+    }
+
     public function getUrlAttribute() 
     {
         return '#';
