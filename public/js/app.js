@@ -11797,11 +11797,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   mounted: function mounted() {
-    this.highlight("answer-".concat(answer.id));
+    this.highlight();
   },
   computed: {
     isInvalid: function isInvalid() {
-      console.log('answer', this.bodyHtml);
       return this.body.length < 10;
     },
     endpoint: function endpoint() {
@@ -11887,7 +11886,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
       this.answers.push(answer);
       this.count++;
       this.$nextTick(function () {
-        _this.highlight();
+        _this.highlight("answer-".concat(answer.id));
       });
     },
     remove: function remove(index) {
@@ -78389,21 +78388,12 @@ _fortawesome_fontawesome_svg_core__WEBPACK_IMPORTED_MODULE_0__["dom"].watch();
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! prismjs */ "./node_modules/prismjs/prism.js");
 /* harmony import */ var prismjs__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(prismjs__WEBPACK_IMPORTED_MODULE_0__);
-function _readOnlyError(name) { throw new Error("\"" + name + "\" is read-only"); }
-
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   methods: {
     highlight: function highlight() {
       var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : "";
       var el = this.$refs.bodyHtml;
-
-      if (!id) {
-        el = (_readOnlyError("el"), this.$refs.bodyHtml);
-      } else {
-        el = (_readOnlyError("el"), doocument.getElementbyId(id));
-      }
-
       if (el) prismjs__WEBPACK_IMPORTED_MODULE_0___default.a.highlightAllUnder(el);
     }
   }

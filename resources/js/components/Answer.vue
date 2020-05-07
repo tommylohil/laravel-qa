@@ -82,12 +82,11 @@ export default {
     },
 
     mounted () {
-        this.highlight(`answer-${answer.id}`);
+        this.highlight();
     },
 
     computed: {
         isInvalid () {
-            console.log('answer',this.bodyHtml)
             return this.body.length < 10;
         },
 

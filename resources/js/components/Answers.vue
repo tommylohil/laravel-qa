@@ -54,7 +54,7 @@ export default {
             this.answers.push(answer);
             this.count++;
             this.$nextTick(() => {
-                this.highlight();
+                this.highlight(`answer-${answer.id}`);
             });
         },
 
