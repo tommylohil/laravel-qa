@@ -17,10 +17,10 @@ class QuestionResource extends JsonResource
         return [
             'id' => $this->id,
             'title' => $this->title,
-            'slug' => $this->slug,
+            'slug' => $this->id . '-' . $this->slug,
             'votes_count' => $this->votes_count,
             'answers_count' => $this->answers_count,
-            'view' => $this->view,
+            'views' => $this->views,
             'status' => $this->status,
             'excerpt' => $this->excerpt,
             'created_date' => $this->created_date,
