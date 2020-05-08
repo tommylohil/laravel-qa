@@ -14,7 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::post('/token', 'Auth\LoginController@getToken');
+Route::post('/login', 'Api\Auth\LoginController@getToken');
+Route::post('/register','Api\Auth\RegisterController');
 
 Route::get('/questions', 'Api\QuestionController@index');
 Route::get('/questions/{question}-{slug}', 'Api\QuestionDetailController');
@@ -32,4 +33,6 @@ Route::middleware(['auth:api'])->group(function() {
     Route::delete('/questions/{question}/favorites', 'Api\FavoriteController@destroy');
     
     Route::get('/my-posts', 'Api\MyPostsController');
+
+    Route::get('/logout', 'Api\Auth\LoginController@destroy');
 });
