@@ -13,9 +13,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'QuestionController@index');
-
 Auth::routes();
+
+Route::view('/{any}', 'spa')->where('any', '.*');
+Route::get('/', 'QuestionController@index');
 
 Route::get('/home', 'HomeController@index')->name('home');
 

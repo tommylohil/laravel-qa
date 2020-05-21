@@ -50,12 +50,6 @@ export default {
         }
     },
 
-    http: {
-        headers: {
-            'X-CSRF-Token': $('meta[name=_token]').attr('content')
-        }
-    },
-
     methods: {
         edit () {
             this.beforeEditCache = this.body;
