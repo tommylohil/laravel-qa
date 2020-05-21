@@ -46,6 +46,10 @@ export default {
                     this.links = data.links;
                 });
         }
+    },
+
+    watch: {
+        "$route": 'fetchQuestions'
     }
 
 }
