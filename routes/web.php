@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Auth::routes();
+
+#Demo Vuetify
+Route::get('/demo-vuetify', function () {
+    return view('demoVuetify');
+});
 
 Route::view('/{any}', 'spa')->where('any', '.*');
 Route::get('/', 'QuestionController@index');
